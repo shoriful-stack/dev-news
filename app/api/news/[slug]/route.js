@@ -41,3 +41,22 @@ export async function PATCH(req, { params }) {
 
     return Response.json(news[index]);
 }
+
+export async function DELETE(req, { params }) {
+    const news = getAllNews();
+    const filtered = news.filter(n => n.slug !== params.slug);
+
+    if (news.length === filtered.length) {
+        return Response.json(
+            { message: "News not found" },
+            { status: 404 }
+        );
+    }
+
+    saveNews(filtered);
+
+    return Response.json({
+        success: true,
+        message: "News deleted successfully"
+    });
+}
