@@ -1,7 +1,9 @@
 import Image from "next/image";
 import NewsCard from "./components/NewsCard";
+import { getNews } from "@/lib/getNews";
 
-export default function Home() {
+export default async function Home() {
+  const newsList = await getNews();
   return (
     <>
       <main className="mt-12">
@@ -14,7 +16,9 @@ export default function Home() {
           </div>
         </div>
         <section className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <NewsCard />
+          {newsList.map(news => (
+            <NewsCard key={news.id} news={news} />
+          ))}
         </section>
       </main>
     </>
