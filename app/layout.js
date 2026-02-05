@@ -19,7 +19,7 @@ export const metadata = {
   description: "Developer focused news portal",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, modal }) {
   return (
     <html lang="en" className="dark">
       <body
@@ -47,6 +47,7 @@ export default function RootLayout({ children }) {
           <div className="relative mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
             <Header />
             {children}
+            {modal}
           </div>
         </div>
       </body>
