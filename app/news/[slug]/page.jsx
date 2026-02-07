@@ -8,6 +8,11 @@ import { notFound } from "next/navigation";
 export default async function NewsDetailsPage({ params }) {
     const allNews = await getNews();
     const news = allNews.find(n => n.slug === params.slug);
+
+    if (!news) {
+        notFound();
+    }
+
     const {
         id,
         title,
@@ -21,10 +26,6 @@ export default async function NewsDetailsPage({ params }) {
         thumbnail,
         tags,
     } = news;
-
-    if (!news) {
-        notFound();
-    }
 
     // sentence-e divide kora
     const sentences = description.split('. ').map(s => s.endsWith('.') ? s : s + '.');
