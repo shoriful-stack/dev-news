@@ -1,6 +1,7 @@
 import { formatCount, formatDate } from "@/lib/formatters";
 import { DownIcon, EyeIcon, UpIcon } from "./SvgIcons/SvgIcons";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NewsCard({ news }) {
     const {
@@ -25,17 +26,21 @@ export default function NewsCard({ news }) {
                 >
                     <article className="group h-full rounded-2xl border border-white/10 bg-[var(--surface)] p-5 shadow-[0_24px_50px_rgba(5,8,16,0.55)] transition hover:-translate-y-1 hover:border-cyan-300/40">
                         <div className="aspect-video overflow-hidden rounded-xl">
-                            <img
+                            <Image
                                 src={`/assets/images/${thumbnail}`}
                                 alt={title}
+                                width={100}
+                                height={100}
                                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                             />
                         </div>
                         <div className="mt-4 flex items-center justify-between text-xs text-zinc-400">
                             <div className="flex items-center gap-2">
-                                <img
+                                <Image
                                     src={`/assets/images/${author_avatar}`}
                                     alt={author_name}
+                                    width={100}
+                                    height={100}
                                     className="h-7 w-7 rounded-full object-cover"
                                 />
                                 <span>{author_name}</span>

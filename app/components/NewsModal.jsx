@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { formatCount, formatDate } from "@/lib/formatters";
+import Image from "next/image";
 
 export default function NewsModal({ news }) {
     const router = useRouter();
@@ -17,8 +18,11 @@ export default function NewsModal({ news }) {
                     ✕
                 </button>
 
-                <img
+                <Image
                     src={`/assets/images/${news.thumbnail}`}
+                    alt={news.title}
+                    width={100}
+                    height={100}
                     className="mb-4 h-64 w-full rounded-lg object-cover"
                 />
 
