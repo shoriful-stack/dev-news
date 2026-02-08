@@ -7,13 +7,22 @@ import Image from "next/image";
 export default function NewsModal({ news }) {
     const router = useRouter();
 
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-            <div className="relative w-full max-w-3xl rounded-xl bg-[#0b0f19] p-6">
+    const closeModal = () => {
+        router.back();
+    };
 
+    return (
+        <div
+            onClick={closeModal}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4"
+        >
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl bg-[#0b0f19] p-6"
+            >
                 <button
-                    onClick={() => router.back()}
-                    className="absolute right-4 top-4 text-zinc-400 hover:text-white"
+                    onClick={closeModal}
+                    className="sticky top-0 ml-auto block rounded-full bg-black/60 px-3 py-1 text-zinc-300 hover:text-white"
                 >
                     ✕
                 </button>
@@ -21,8 +30,8 @@ export default function NewsModal({ news }) {
                 <Image
                     src={`/assets/images/${news.thumbnail}`}
                     alt={news.title}
-                    width={100}
-                    height={100}
+                    width={1200}
+                    height={600}
                     className="mb-4 h-64 w-full rounded-lg object-cover"
                 />
 
@@ -30,11 +39,11 @@ export default function NewsModal({ news }) {
                     {news.title}
                 </h2>
 
-                <p className="mt-2 text-zinc-400">
+                <p className="mt-3 text-zinc-400 leading-relaxed">
                     {news.description}
                 </p>
 
-                <div className="mt-4 flex justify-between text-sm text-zinc-400">
+                <div className="mt-6 flex justify-between text-sm text-zinc-400">
                     <span>{formatDate(news.published_date)}</span>
                     <span>{formatCount(news.views)} views</span>
                 </div>
