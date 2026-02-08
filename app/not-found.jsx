@@ -1,6 +1,10 @@
+"use client"
+
 import Link from "next/link";
+import { useLanguage } from "./providers/LanguageProvider";
 
 export default function NotFound() {
+    const { t } = useLanguage();
     return (
         <div className="flex min-h-[60vh] flex-col items-center justify-center text-center">
             <h1 className="text-4xl font-bold text-white">
