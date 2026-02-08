@@ -2,6 +2,7 @@ import { formatCount, formatDate } from "@/lib/formatters";
 import { DownIcon, EyeIcon, UpIcon } from "./SvgIcons/SvgIcons";
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "../providers/LanguageProvider";
 
 export default function NewsCard({ news }) {
     const {
@@ -17,6 +18,7 @@ export default function NewsCard({ news }) {
         thumbnail,
         tags,
     } = news;
+    const { t } = useLanguage();
     return (
         <>
             <Link href={`/news/${news.slug}`} scroll={false}>
@@ -70,7 +72,7 @@ export default function NewsCard({ news }) {
                             </div>
                             <span className="flex items-center gap-1">
                                 <EyeIcon />
-                                {formatCount(views)} views
+                                {formatCount(views)} {t("views")}
                             </span>
                         </div>
                     </article>

@@ -1,8 +1,13 @@
+"use client"
+
 import Link from "next/link";
 import { SearchIcon } from "./SvgIcons/SvgIcons";
 import Image from "next/image";
+import { useLanguage } from "../providers/LanguageProvider";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
+    const { t } = useLanguage();
     return (
         <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-4">
@@ -14,25 +19,26 @@ export default function Header() {
                     </div>
                 </Link>
                 <div>
-                    <h1 className="text-2xl font-semibold text-white">Dev News</h1>
+                    <h1 className="text-2xl font-semibold text-white">{t("site_title")}</h1>
                     <p className="mt-1 text-sm text-zinc-400">
-                        Signals from the builders shaping tomorrow.
+                        {t("site_subtitle")}
                     </p>
                 </div>
             </div>
-            <div className="flex w-full items-center md:max-w-md">
+            <div className="flex w-full items-center md:max-w-sm">
                 <div className="relative w-full">
                     <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400">
                         <SearchIcon />
                     </span>
                     <input
                         type="search"
-                        placeholder="Search stories, tags, authors"
+                        placeholder={t("search_placeholder")}
                         className="w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-12 pr-4 text-sm text-white placeholder:text-zinc-500 shadow-[0_10px_30px_rgba(10,10,20,0.35)] outline-none ring-1 ring-transparent transition focus:border-cyan-300/40 focus:ring-cyan-300/20"
                     />
                 </div>
             </div>
             <div className="flex items-center gap-3">
+                <LanguageSwitcher />
                 <div className="rounded-full bg-white/10 p-[2px]">
                     <Image
                         src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&w=96&h=96&q=80"
@@ -44,7 +50,7 @@ export default function Header() {
                 </div>
                 <div>
                     <p className="text-sm font-medium text-white">Alex Rivera</p>
-                    <p className="text-xs text-zinc-400">Pro member</p>
+                    <p className="text-xs text-zinc-400">{t("pro_member")}</p>
                 </div>
             </div>
         </header>
